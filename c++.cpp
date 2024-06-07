@@ -5,15 +5,37 @@ comment
 
 //Whitespace is ignored!
 //Capitalization matters!
-
+//The Header--wherein functions, classes, etc are defined and other libraries or documents are imported
 //at the top, to allow input and output
 #include <iostream>
 //for math
 #include <cmath>
 //standard
 #include <cstdlib>
+#include <list>
 
 using namespace std;
+
+//define a class
+class Standard {
+    public:
+        Standard();
+        void SetVariable(int paramater);
+        int GetVariable() const;
+    private:
+        int example; 
+};
+//Constructor--called every time a variable of the class is declared
+Standard::Standard() {
+    example = 0; //variables often have a default value that means unset
+}
+//define functions declared in class
+void Standard::SetVariable(int parameter){
+    example = parameter;
+}
+int Standard::GetVariable() const {
+    return example;
+}
 
 //the main program, what is executed
 int main() {
@@ -22,15 +44,45 @@ int main() {
     double wage;
     wage = 20.0;
 
-
     //const for constants, all caps and underscores
     const int HOURS_PER_WEEK = 40;
+
+    //Arrays, Lists, Vectors (Vector default)
+
+    //declare array--from C, size fixed, must be deallocated explicitly, must be defined locally
+    int* exampleArray = new int[7];
+    delete[] exampleArray;
+
+    //declare vector--subset of array, can resize/mutate/iterate, can copy or assign directly
+    vector<int> hoursByDay;
+
+    //declare a list--double linked list--non contiguous memory
+    list<int> exampleList;
+
+    //ways to input values--works for all
+    //push back adds to end
+    vector<int> type1;
+    for (int i = 0; i < 5; i + 1) {
+        type1.push_back(10);
+    }
+    //declare with length and efault value
+    vector<int> type2(5, 10);
+    //all at once (like an array)
+    vector<int> type3{10, 10, 10, 10, 10};
+
+
+    //create an object of type class
+    Standard classObject;
+    classObject.SetVariable(5);
+
 
     //cin "characters in" to get input from keyboard, >> to assign to variable
     cin >> wage;
 
     int a = wage;
 
+    //conditionals
+    //switch--specific instances, simplified
     switch(a) {
         case 0:
             cout << "Get a job!" << endl;
@@ -39,6 +91,7 @@ int main() {
             break;
     }
 
+    //standard if, else, else if setup
     if (wage <= 12.0) {
         cout << "Ouch." << endl;
     }
@@ -59,7 +112,8 @@ int main() {
 // Notes
     // (static_cast<type>(expression)) will convert variable type
     // int/int results in int, e.g. 3/5 -> 1
-    // char 'c' string "string" 
+    // often needs import for data types such as vectors, lists, etc
+    // character single quote-- 'c' string double quote-- "string" 
     // names are only valid within their scope
 
 // Compiling
@@ -69,7 +123,9 @@ int main() {
     // to show warnings:
     // g++ -Wall yourfile.cpp
 
-    //test (compile/run)  often
+    // to run:
+    // ./executable
+    // test (compile/run)  often
 
 
 //Compile errors
